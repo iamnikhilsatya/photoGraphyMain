@@ -6,8 +6,7 @@ import AdminDashboard from './admin/AdminDashboard'
 import Signin from '../src/admin/Signin'
 const  Routes = ()=> {
     return (
-       <BrowserRouter>
-       
+       <BrowserRouter>      
             <Switch>
                  <Route path="/" exact component={Signin} />
                  <Route path="/addcustomer" exact component={AddCustomer} />
