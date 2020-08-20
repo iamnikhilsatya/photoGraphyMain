@@ -1,7 +1,9 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 // import { signout, isAutheticated } from '../auth/helper';
 import './MenuMin.css'
+import firebase from '../firebase/firebase'
+import { AuthContext } from '../context/AuthContext';
 
 const currentTab = (history, path) => {
 	if (history.location.pathname === path) {
@@ -16,67 +18,89 @@ const currentTab = (history, path) => {
 };
 const Menu = ({ history }) => {
 
+	const { user, LogOut } = useContext(AuthContext)
+
+	let back = useHistory()
+
+	const Logout = () => {
+		LogOut();
+		back.push('/')
+	}
+
 	return (
-		
-		<div style={{paddingBottom:"100px" ,
-		borderBottom:"text-primary",
-		
+
+		<div style={{
+			paddingBottom: "100px",
+			borderBottom: "text-primary",
+
 		}}
-		className="bg-warning"
+			className="bg-warning"
 		>
-	
-			
-			 <nav className="nav bg-warning">
-                   <span id="brand">
-				   {/* <Link className="nav-link" to="/home" style={currentTab(history, '/')}>
+
+
+			<nav className="nav bg-warning">
+				<span id="brand">
+					{/* <Link className="nav-link" to="/home" style={currentTab(history, '/')}>
 						
 						<span className="text-dark">HOME</span>
 
 					</Link> */}
-                  </span> 
+				</span>
 
-                  <ul id="menu">
-                        
-				
-				{/* {isAutheticated()&&( */}
+				<ul id="menu">
+
+
+					{/* {isAutheticated()&&( */}
 					<li className="nav-item">
-					<Link className="nav-link" to="/admin/dashboard" style={currentTab(history, '/admin/dashboard')}>
-						
-						<span className="text-dark" style={{fontSize:'18px'}}>ADMIN DASHBOARD</span>
-					</Link>
-				</li>
-				{/* )} */}
-			
+						{
+							user ? <Link className="nav-link" to="/admin/dashboard" style={currentTab(history, '/admin/dashboard')}>
+								<span className="text-dark" style={{ fontSize: '18px' }}>ADMIN DASHBOARD</span>
+							</Link> : ""
+						}
+					</li>
+					{/* )} */}
 
-				{/* {isAutheticated()&&( */}
+
+					{/* {isAutheticated()&&( */}
 					<li className="nav-item">
-					<Link className="nav-link" to="/addcustomer" style={currentTab(history, '/addcustomer')}>
-						<span className="text-dark" style={{fontSize:'18px'}}>ADD CUSTOMER</span>
-					</Link>
-				</li>
-				{/* )} */}
+						{
+							user ? <Link className="nav-link" to="/addcustomer" style={currentTab(history, '/addcustomer')}>
+								<span className="text-dark" style={{ fontSize: '18px' }}>ADD CUSTOMER</span>
+							</Link> : <Link className="nav-link" to="/" style={currentTab(history, '/addcustomer')}>
+									<span className="text-dark" style={{ fontSize: '18px' }}>LOGIN</span>
+								</Link>
+						}
+					</li>
+					{/* )} */}
 
-                {/* {isAutheticated()&&( */}
+					{/* {isAutheticated()&&( */}
 					<li className="nav-item">
-					<Link className="nav-link" to="/signout" style={currentTab(history, '/addcustomer')}>
-						<span className="text-dark" style={{fontSize:'18px'}}>SIGNOUT</span>
-					</Link>
-				</li>
-				{/* )} */}
-				
-				
-               
-				{/* {isAutheticated() && ( */}
-			
-			
-                        
-                  </ul>
+						{
+							user ? <Link className="nav-link" style={currentTab(history, '/addcustomer')} onClick={Logout} >
+								<span className="text-dark" style={{ fontSize: '18px' }}>SIGNOUT</span>
+							</Link> : <Link className="nav-link" to="/newadmin" style={currentTab(history, '/addcustomer')} >
+									<span className="text-dark" style={{ fontSize: '18px' }}>NEW ADMIN</span>
+								</Link>
+						}
+					</li>
+					{/* {
+						user ? <button type="submit" className="btn btn-danger btn-block" onClick={Logout}>Logout</button> : <button type="submit" className="btn btn-danger btn-block">New Admin</button>
+					} */}
+					{/* )} */}
 
-                  
 
-            </nav>
 
-          
+					{/* {isAutheticated() && ( */}
+
+
+
+				</ul>
+
+
+
+			</nav>
+
+
 
 		</div>
 	);
