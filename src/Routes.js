@@ -5,7 +5,7 @@ import AddCustomer from '../src/admin/AddCustomer'
 import AdminDashboard from './admin/AdminDashboard'
 import Signin from '../src/admin/Signin'
 import { AuthContext } from './context/AuthContext'
-import NewAdmin from './admin/NewAdmin'
+// import NewAdmin from './admin/NewAdmin'
 
 const Routes = () => {
 
@@ -22,7 +22,7 @@ const Routes = () => {
             <Route path="/addcustomer" exact component={AddCustomer} />
             <Route path="/signin" exact component={Login} />
             <Route path="/admin/dashboard" exact component={AdminDashboard} />
-            <Route path="/newadmin" exact component={NewAdmin} />
+            {/* <Route path="/newadmin" exact component={NewAdmin} /> */}
          </Switch>
       </BrowserRouter>
    )
