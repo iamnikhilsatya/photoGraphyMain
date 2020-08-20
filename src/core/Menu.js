@@ -39,56 +39,62 @@ const Menu = ({ history }) => {
 
 
 			<nav className="nav bg-warning">
-				{
-					user ? <div>
-						<span id="brand">
-							{/* <Link className="nav-link" to="/home" style={currentTab(history, '/')}>
+				<span id="brand">
+					{/* <Link className="nav-link" to="/home" style={currentTab(history, '/')}>
 						
 						<span className="text-dark">HOME</span>
 
 					</Link> */}
-						</span>
+				</span>
 
-						<ul id="menu">
+				<ul id="menu">
 
 
-							{/* {isAutheticated()&&( */}
-							<li className="nav-item">
-								<Link className="nav-link" to="/admin/dashboard" style={currentTab(history, '/admin/dashboard')}>
-									<span className="text-dark" style={{ fontSize: '18px' }}>ADMIN DASHBOARD</span>
+					{/* {isAutheticated()&&( */}
+					{
+						user ? <li className="nav-item">
+							<Link className="nav-link" to="/admin/dashboard" style={currentTab(history, '/admin/dashboard')}>
+								<span className="text-dark" style={{ fontSize: '18px' }}>ADMIN DASHBOARD</span>
+							</Link>
+						</li> : ""
+					}
+					{/* )} */}
+
+
+					{/* {isAutheticated()&&( */}
+					<li className="nav-item">
+						{
+							user ? <Link className="nav-link" to="/addcustomer" style={currentTab(history, '/addcustomer')}>
+								<span className="text-dark" style={{ fontSize: '18px' }}>ADD CUSTOMER</span>
+							</Link> : <Link className="nav-link" to="/" style={currentTab(history, '/addcustomer')}>
+									<span className="text-dark" style={{ fontSize: '18px' }}>LOGIN</span>
 								</Link>
-							</li>
-							{/* )} */}
+						}
+					</li>
+					{/* )} */}
 
-
-							{/* {isAutheticated()&&( */}
-							<li className="nav-item">
-								<Link className="nav-link" to="/addcustomer" style={currentTab(history, '/addcustomer')}>
-									<span className="text-dark" style={{ fontSize: '18px' }}>ADD CUSTOMER</span>
+					{/* {isAutheticated()&&( */}
+					<li className="nav-item">
+						{
+							user ? <Link className="nav-link" style={currentTab(history, '/addcustomer')} onClick={Logout} >
+								<span className="text-dark" style={{ fontSize: '18px' }}>SIGNOUT</span>
+							</Link> : <Link className="nav-link" to="/newadmin" style={currentTab(history, '/addcustomer')} >
+									<span className="text-dark" style={{ fontSize: '18px' }}>NEW ADMIN</span>
 								</Link>
-							</li>
-							{/* )} */}
-
-							{/* {isAutheticated()&&( */}
-							<li className="nav-item">
-								<Link className="nav-link" style={currentTab(history, '/addcustomer')} onClick={Logout} >
-									<span className="text-dark" style={{ fontSize: '18px' }}>SIGNOUT</span>
-								</Link>
-							</li>
-							{/* {
+						}
+					</li>
+					{/* {
 						user ? <button type="submit" className="btn btn-danger btn-block" onClick={Logout}>Logout</button> : <button type="submit" className="btn btn-danger btn-block">New Admin</button>
 					} */}
-							{/* )} */}
+					{/* )} */}
 
 
 
-							{/* {isAutheticated() && ( */}
+					{/* {isAutheticated() && ( */}
 
 
 
-						</ul>
-					</div> : ""
-				}
+				</ul>
 			</nav>
 		</div>
 	);
